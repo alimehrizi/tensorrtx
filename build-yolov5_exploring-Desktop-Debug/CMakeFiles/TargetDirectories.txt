@@ -1,0 +1,4 @@
+/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Debug/CMakeFiles/deep_cores.dir
+/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Debug/CMakeFiles/trt-detector.dir
