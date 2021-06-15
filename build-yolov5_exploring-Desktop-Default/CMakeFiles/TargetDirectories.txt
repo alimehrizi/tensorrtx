@@ -1,4 +1,0 @@
-/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Default/CMakeFiles/rebuild_cache.dir
-/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Default/CMakeFiles/edit_cache.dir
-/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Default/CMakeFiles/deep_cores.dir
-/home/altex/tensorrtx/build-yolov5_exploring-Desktop-Default/CMakeFiles/TrackingV11.1.dir

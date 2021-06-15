@@ -1,0 +1,4 @@
+/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/CMakeFiles/rebuild_cache.dir
+/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/CMakeFiles/edit_cache.dir
+/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/CMakeFiles/myplugins.dir
+/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/CMakeFiles/yolov5.dir
