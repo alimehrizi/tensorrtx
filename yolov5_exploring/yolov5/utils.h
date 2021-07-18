@@ -33,24 +33,100 @@ static inline void preprocess_img(cv::Mat& src, cv::Mat &dst, float out_w, float
     return;
 }
 
-static inline void preprocess_img_cuda(cv::cuda::GpuMat& src, cv::cuda::GpuMat &dst, float out_w, float out_h, cv::cuda::Stream &stream) {
-    float in_h = src.size().height;
-    float in_w = src.size().width;
+//static inline void preprocess_img_cuda(cv::cuda::GpuMat& src, cv::cuda::GpuMat &dst, float out_w, float out_h, cv::cuda::Stream &stream) {
+//    float in_h = src.size().height;
+//    float in_w = src.size().width;
 
-    float scale = std::min(out_w / in_w, out_h / in_h);
+//    float scale = std::min(out_w / in_w, out_h / in_h);
 
-    int mid_h = static_cast<int>(in_h * scale);
-    int mid_w = static_cast<int>(in_w * scale);
-    cv::cuda::resize(src, dst, cv::Size(mid_w, mid_h),0,0,cv::INTER_LINEAR,stream);
-    int top = (static_cast<int>(out_h) - mid_h) / 2;
-    int down = (static_cast<int>(out_h)- mid_h + 1) / 2;
-    int left = (static_cast<int>(out_w)- mid_w) / 2;
-    int right = (static_cast<int>(out_w)- mid_w + 1) / 2;
+//    int mid_h = static_cast<int>(in_h * scale);
+//    int mid_w = static_cast<int>(in_w * scale);
+//    cv::cuda::resize(src, dst, cv::Size(mid_w, mid_h),0,0,cv::INTER_LINEAR,stream);
+//    int top = (static_cast<int>(out_h) - mid_h) / 2;
+//    int down = (static_cast<int>(out_h)- mid_h + 1) / 2;
+//    int left = (static_cast<int>(out_w)- mid_w) / 2;
+//    int right = (static_cast<int>(out_w)- mid_w + 1) / 2;
 
-    cv::cuda::copyMakeBorder(dst, dst, top, down, left, right, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0),stream);
+//    cv::cuda::copyMakeBorder(dst, dst, top, down, left, right, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0),stream);
 
-    return;
+//    return;
+//}
+
+
+
+static inline std::vector<float> preprocess_img_cuda(cv::cuda::GpuMat& src, cv::cuda::GpuMat &dst, float out_w, float out_h, cv::cuda::Stream &stream) {
+    auto h0 = static_cast<float>(src.rows);
+    auto w0 = static_cast<float>(src.cols);
+
+    float r = std::min(out_w / w0, out_h / h0);
+    auto interp = cv::INTER_AREA;
+    if(r>1)
+        interp = cv::INTER_LINEAR;
+    int h = r*h0;
+    int w = r*w0;
+    //std::cout<<"step before resize "<<dst.step<<std::endl;
+
+    cv::cuda::resize(src, dst, cv::Size(w, h),0,0,interp,stream);
+
+    //std::cout<<"step after resize "<<dst.step<<std::endl;
+    int new_unpad_w = w;
+    int new_unpad_h = h;
+    float dh = out_h - new_unpad_h;
+    float dw = out_w - new_unpad_w;
+    dw /= 2;
+    dh /= 2;
+
+    int top = round(dh-0.1);
+    int bot = round(dh+0.1);
+    int left = round(dw-0.1);
+    int right = round(dw+0.1);
+
+
+    cv::cuda::copyMakeBorder(dst, dst, top, bot, left, right, cv::BORDER_CONSTANT, cv::Scalar(114, 114, 114),stream);
+    //std::cout<<"step after border "<<dst.step<<std::endl;
+    std::vector<float> pad_info{h0,w0, float(h/h0), float(w/w0), dw, dh};
+    return pad_info;
 }
+
+
+
+
+static inline std::vector<float> preprocess_img_cpu(const cv::Mat& src, cv::Mat &dst, float out_w, float out_h) {
+    auto h0 = static_cast<float>(src.rows);
+    auto w0 = static_cast<float>(src.cols);
+
+
+    float r = std::min(out_w / w0, out_h / h0);
+    auto interp = cv::INTER_AREA;
+    if(r>1)
+        interp = cv::INTER_LINEAR;
+    int h = r*h0;
+    int w = r*w0;
+    if(r>1 | r<1)
+        cv::resize(src, dst, cv::Size(w, h),0,0,interp);
+    else
+        dst = src.clone();
+
+    int new_unpad_w = w;
+    int new_unpad_h = h;
+    float dh = out_h - new_unpad_h;
+    float dw = out_w - new_unpad_w;
+    dw /= 2;
+    dh /= 2;
+
+    int top = round(dh-0.1);
+    int bot = round(dh+0.1);
+    int left = round(dw-0.1);
+    int right = round(dw+0.1);
+
+    cv::copyMakeBorder(dst, dst, top, bot, left, right, cv::BORDER_CONSTANT, cv::Scalar(114, 114, 114));
+
+    std::vector<float> pad_info{h0,w0, float(h/h0), float(w/w0), dw, dh};
+    return pad_info;
+}
+
+
+
 
 static inline int read_files_in_dir(const char *p_dir_name, std::vector<std::string> &file_names) {
     DIR *p_dir = opendir(p_dir_name);

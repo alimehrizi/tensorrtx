@@ -298,27 +298,58 @@ std::vector<std::vector<Yolo::Detection>> YOLOv5Engine::runInference(std::vector
     cpu_timer2.Start();
 
     int offset = 0;
-
+    std::vector<std::vector<float>> batch_shapes;
     for (int b = 0; b < frames.size(); b++) {
 
         int frame_data_size = frames[b].size().width * frames[b].size().height*3*sizeof(unsigned char);
-        cv::cuda::GpuMat gpu_img(frames[b].size(),CV_8UC3, &gpu_data_d[offset]);
-        offset += frame_data_size;
-        cv::cuda::GpuMat pr_gpu_img;
-        if (gpu_img.empty()) continue;
-        preprocess_img_cuda(gpu_img, pr_gpu_img, INPUT_W, INPUT_H, opencv_stream);
+        cv::Mat gputemp;
+        int type=0;
+        if(type==0){
+            cv::cuda::GpuMat gpu_img(frames[b].size(),CV_8UC3, &gpu_data_d[offset]);
 
-        //preprocess_img(pr_img, pr_img, INPUT_W, INPUT_H); // letterbox BGR to RGB
+            cv::cuda::GpuMat pr_gpu_img = cv::cuda::GpuMat(INPUT_H, INPUT_W, CV_8UC3,cv::Scalar(114, 114,114));
+            //std::cout<<" first step = "<<pr_gpu_img.step<<"  .size="<<pr_gpu_img.size()<<std::endl;
+            if (gpu_img.empty()) continue;
 
-        if(!pr_gpu_img.isContinuous()){
-            matCopy(pr_gpu_img.data, &gpu_data[b * 3 * INPUT_H * INPUT_W],pr_gpu_img.step,stream);
+            auto shapes = preprocess_img_cuda(gpu_img, pr_gpu_img, INPUT_W, INPUT_H, opencv_stream);
+            batch_shapes.push_back(shapes);
+            //preprocess_img(pr_img, pr_img, INPUT_W, INPUT_H); // letterbox BGR to RGB
+
+
+
+
+            if(!pr_gpu_img.isContinuous()){
+                matCopy(pr_gpu_img.data, &gpu_data[b * 3 * INPUT_H * INPUT_W],pr_gpu_img.step,stream);
+            }else{
+                 CUDA_CHECK(cudaMemcpyAsync((void*)&gpu_data[b * 3 * INPUT_H * INPUT_W], (void*)pr_gpu_img.data, 3 * INPUT_H * INPUT_W * sizeof(unsigned char), cudaMemcpyDeviceToDevice,stream));
+            }
+        }else if(type==1){
+            cv::Mat pr_img;
+            auto shapes = preprocess_img_cpu(frames[b], pr_img, INPUT_W, INPUT_H);
+            batch_shapes.push_back(shapes);
+            //preprocess_img(pr_img, pr_img, INPUT_W, INPUT_H); // letterbox BGR to RGB
+            cv::cuda::GpuMat pr_gpu_img;
+
+
+            pr_gpu_img.upload(pr_img);
+            pr_gpu_img.download(gputemp);
+            if(!pr_gpu_img.isContinuous()){
+               std::cout<<" step = "<<pr_gpu_img.step<<"  .size="<<pr_gpu_img.size()<<std::endl;
+//                exit(1);
+                matCopy(pr_gpu_img.data, &gpu_data[b * 3 * INPUT_H * INPUT_W],pr_gpu_img.step,stream);
+            }else{
+                 CUDA_CHECK(cudaMemcpyAsync((void*)&gpu_data[b * 3 * INPUT_H * INPUT_W], (void*)pr_gpu_img.data, 3 * INPUT_H * INPUT_W * sizeof(unsigned char), cudaMemcpyDeviceToDevice,stream));
+            }
+
         }else{
-            //CUDA_CHECK(cudaMemcpy((void*)&gpu_data[b * 3 * INPUT_H * INPUT_W], (void*)pr_img.data, 3 * INPUT_H * INPUT_W * sizeof(unsigned char), cudaMemcpyHostToDevice));
-            CUDA_CHECK(cudaMemcpyAsync((void*)&gpu_data[b * 3 * INPUT_H * INPUT_W], (void*)pr_gpu_img.data, 3 * INPUT_H * INPUT_W * sizeof(unsigned char), cudaMemcpyDeviceToDevice,stream));
+            cv::Mat pr_img;
+            auto shapes = preprocess_img_cpu(frames[b], pr_img, INPUT_W, INPUT_H);
+            batch_shapes.push_back(shapes);
+            CUDA_CHECK(cudaMemcpy((void*)&gpu_data[b * 3 * INPUT_H * INPUT_W], (void*)pr_img.data, 3 * INPUT_H * INPUT_W * sizeof(unsigned char), cudaMemcpyHostToDevice));
+
         }
 
-        //memcpy((void*)&cpu_data[b * 3 * INPUT_H * INPUT_W],(void*)pr_img.data,3 * INPUT_H * INPUT_W*sizeof(unsigned char));
-
+        offset += frame_data_size;
 
 
     }
@@ -343,6 +374,13 @@ std::vector<std::vector<Yolo::Detection>> YOLOv5Engine::runInference(std::vector
     for (int b = 0; b < frames.size(); b++) {
         auto& res = batch_res[b];
         nms(res, &prob[b * Yolo::OUTPUT_SIZE], Yolo::CONF_THRESH, Yolo::NMS_THRESH);
+        for(int k=0;k<batch_res[b].size();k++){
+            cv::Rect2f box = get_rect(frames[b], res[k].bbox, batch_shapes[b]);
+            res[k].bbox[0] = box.x;
+            res[k].bbox[1] = box.y;
+            res[k].bbox[2] = box.width;
+            res[k].bbox[3] = box.height;
+        }
     }
     post_time += post_timer.TimeSpent();
 

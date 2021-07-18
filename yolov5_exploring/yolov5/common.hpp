@@ -12,32 +12,36 @@
 using namespace nvinfer1;
 
 
+cv::Rect2f get_rect(cv::Mat& img, float bbox[4], std::vector<float> &shapes) {
+    auto clip = [](float n, float lower, float upper) {
+            return std::max(lower, std::min(n, upper));
+        };
+    float l, r, t, b;
 
-cv::Rect get_rect(cv::Mat& img, float bbox[4]) {
-    int l, r, t, b;
-    float r_w = Yolo::INPUT_W / (img.cols * 1.0);
-    float r_h = Yolo::INPUT_H / (img.rows * 1.0);
-    if (r_h > r_w) {
-        l = bbox[0] - bbox[2] / 2.f;
-        r = bbox[0] + bbox[2] / 2.f;
-        t = bbox[1] - bbox[3] / 2.f - (Yolo::INPUT_H - r_w * img.rows) / 2;
-        b = bbox[1] + bbox[3] / 2.f - (Yolo::INPUT_H - r_w * img.rows) / 2;
-        l = l / r_w;
-        r = r / r_w;
-        t = t / r_w;
-        b = b / r_w;
-    } else {
-        l = bbox[0] - bbox[2] / 2.f - (Yolo::INPUT_W - r_h * img.cols) / 2;
-        r = bbox[0] + bbox[2] / 2.f - (Yolo::INPUT_W - r_h * img.cols) / 2;
-        t = bbox[1] - bbox[3] / 2.f;
-        b = bbox[1] + bbox[3] / 2.f;
-        l = l / r_h;
-        r = r / r_h;
-        t = t / r_h;
-        b = b / r_h;
-    }
-    return cv::Rect(l, t, r - l, b - t);
+    l = bbox[0] - bbox[2] / 2.f;
+    r = bbox[0] + bbox[2] / 2.f;
+    t = bbox[1] - bbox[3] / 2.f;
+    b = bbox[1] + bbox[3] / 2.f;
+
+    float scale = shapes[2];
+    int pad_w = shapes[4];
+    int pad_h = shapes[5];
+
+    float x1 = (l - pad_w)/scale;  // x padding
+    float y1 = (t - pad_h)/scale;  // y padding
+    float x2 = (r - pad_w)/scale;  // x padding
+    float y2 = (b - pad_h)/scale;  // y padding
+
+    x1 = clip(x1, 0, img.size().width);
+    y1 = clip(y1, 0, img.size().height);
+    x2 = clip(x2, 0, img.size().width);
+    y2 = clip(y2, 0, img.size().height);
+
+    cv::Rect2f box = cv::Rect2f(cv::Point2f(x1, y1), cv::Point2f(x2, y2));
+
+    return box;
 }
+
 
 float iou(float lbox[4], float rbox[4]) {
     float interBox[] = {
