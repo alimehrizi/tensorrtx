@@ -18,13 +18,13 @@ namespace Yolo
         float anchors[CHECK_COUNT * 2];
     };
 
-    static constexpr int CLASS_NUM = 3;
-    static constexpr int INPUT_H = 320;
-    static constexpr int INPUT_W = 480;
+    static constexpr int CLASS_NUM = 6;
+    static constexpr int INPUT_H = 480;
+    static constexpr int INPUT_W = 640;
     static constexpr int MAX_OUTPUT_BBOX_COUNT = 600;
     //static constexpr int MAX_NMS_BBOX_COUNT = 100;
-    static constexpr float NMS_THRESH = 0.4;
-    static constexpr float CONF_THRESH = 0.5;
+    static constexpr float NMS_THRESH = 0.45;
+    static constexpr float CONF_THRESH = 0.1;
 
     static constexpr int LOCATIONS = 4;
     struct alignas(float) Detection {

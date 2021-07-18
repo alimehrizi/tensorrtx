@@ -10,7 +10,7 @@
 #define DEVICE 0  // GPU id
 #define NMS_THRESH 0.45
 #define CONF_THRESH 0.1
-#define BATCH_SIZE 1
+#define BATCH_SIZE 32
 
 
 /*

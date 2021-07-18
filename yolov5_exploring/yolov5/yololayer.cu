@@ -335,9 +335,9 @@ namespace nvinfer1
 }
 __global__ void convert2float( unsigned char* char_data, float*data){
     int idx = blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*3*INPUT_W;
-    data[ blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*INPUT_W+threadIdx.x] = (float)char_data[idx+3*threadIdx.x]/255.0;
+    data[ blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*INPUT_W+threadIdx.x] = (float)char_data[idx+3*threadIdx.x+2]/255.0;
     data[blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*INPUT_W+threadIdx.x+INPUT_W*INPUT_H] = (float)char_data[idx+3*threadIdx.x+1]/255.0;
-    data[blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*INPUT_W+threadIdx.x+2*INPUT_W*INPUT_H] = (float)char_data[idx+3*threadIdx.x+2]/255.0;
+    data[blockIdx.x*3*INPUT_H*INPUT_W+blockIdx.y*INPUT_W+threadIdx.x+2*INPUT_W*INPUT_H] = (float)char_data[idx+3*threadIdx.x]/255.0;
 
 }
 

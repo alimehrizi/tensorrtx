@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(trt-yolodetector)
+project(trt-yolov5)
 
 
 set(CMAKE_CXX_STANDARD 11)
@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 
 find_package(OpenCV PATHS /home/altex/OPENCV-4.5.0 NO_DEFAULT_PATH)
-
+add_definitions( -DCUDA_NMS)
 find_package(CUDA REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/yolov5)
@@ -18,8 +18,8 @@ include_directories(${PROJECT_SOURCE_DIR}/yolov5)
 include_directories(/usr/local/cuda-11.0/include)
 link_directories(/usr/local/cuda-11.0/lib64)
 # tensorrt
-include_directories(/usr/local/TensorRT-7.2.2.3.Ubuntu-18.04.x86_64-gnu.cuda-11.0.cudnn8.0/TensorRT-7.2.2.3/include)
-link_directories(/usr/local/TensorRT-7.2.2.3.Ubuntu-18.04.x86_64-gnu.cuda-11.0.cudnn8.0/TensorRT-7.2.2.3/lib)
+include_directories(/usr/local/TensorRT-7.2.2.3/include)
+link_directories(/usr/local/TensorRT-7.2.2.3/lib)
 
 
 
@@ -37,7 +37,7 @@ set(YOLO_SRC ${PROJECT_SOURCE_DIR}/yolov5/yololayer.cu
 cuda_add_library(deep_cores SHARED  ${YOLO_SRC})
 target_link_libraries(deep_cores ${OpenCV_LIBS})
 target_link_libraries(deep_cores cudart)
-target_link_libraries(deep_cores /usr/local/TensorRT-7.2.2.3.Ubuntu-18.04.x86_64-gnu.cuda-11.0.cudnn8.0/TensorRT-7.2.2.3/lib/libnvinfer.so)
+target_link_libraries(deep_cores /usr/local/TensorRT-7.2.2.3/lib/libnvinfer.so)
 target_link_libraries(deep_cores ${CUDA_LIBRARIES} )
 
 

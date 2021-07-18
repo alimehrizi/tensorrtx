@@ -1,6 +1,6 @@
 # yolov3
 
-The Pytorch implementation is [ultralytics/yolov3](https://github.com/ultralytics/yolov3). It provides two trained weights of yolov3, `yolov3.weights` and `yolov3.pt`
+The Pytorch implementation is [ultralytics/yolov3 archive branch](https://github.com/ultralytics/yolov3/tree/archive). It provides two trained weights of yolov3, `yolov3.weights` and `yolov3.pt`
 
 This branch is using tensorrt7 API, there is also a yolov3 implementation using tensorrt4 API, go to [branch trt4/yolov3](https://github.com/wang-xinyu/tensorrtx/tree/trt4/yolov3), which is using [ayooshkathuria/pytorch-yolo-v3](https://github.com/ayooshkathuria/pytorch-yolo-v3).
 
@@ -45,7 +45,7 @@ sudo ./yolov3 -d ../../yolov3-spp/samples // deserialize plan file and run infer
 
 # INT8 Quantization
 
-1. Prepare calibration images, you can randomly select 1000s images from your train set. For coco, you can also download my calibration images `coco_calib` from [BaiduPan](https://pan.baidu.com/s/1GOm_-JobpyLMAqZWCDUhKg) pwd: a9wh
+1. Prepare calibration images, you can randomly select 1000s images from your train set. For coco, you can also download my calibration images `coco_calib` from [GoogleDrive](https://drive.google.com/drive/folders/1s7jE9DtOngZMzJC1uL307J2MiaGwdRSI?usp=sharing) or [BaiduPan](https://pan.baidu.com/s/1GOm_-JobpyLMAqZWCDUhKg) pwd: a9wh
 
 2. unzip it in yolov3/build
 

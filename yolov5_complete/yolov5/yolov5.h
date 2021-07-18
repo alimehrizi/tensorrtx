@@ -16,7 +16,7 @@
 
 
 
-#define USE_FP16  // set USE_INT8 or USE_FP16 or USE_FP32
+#define USE_FP32  // set USE_INT8 or USE_FP16 or USE_FP32
 #define DEVICE 0  // GPU id
 #define N_PPREPROCESSING_THREAD 1
 #define NET 's'
@@ -49,7 +49,7 @@ public:
         // Note that indices are guaranteed to be less than IEngine::getNbBindings()
 
         YOLOv5Engine(std::string net, std::string wts_name, std::string engine_name, int batch_size);
-        std::vector<std::vector<Yolo::Detection> > runInference(std::vector<cv::Mat> &frames, unsigned char *gpu_data_d, bool preprocess_gpu);
+        std::vector<std::vector<Yolo::Detection> > runInference(std::vector<cv::Mat> &frames, unsigned char *gpu_data_d, int data_size);
         void destroyEngine();
         double engine_time, model_time;
         double preprocess_time;

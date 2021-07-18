@@ -16,7 +16,7 @@
 
 
 
-#define USE_FP16  // set USE_INT8 or USE_FP16 or USE_FP32
+#define USE_FP32  // set USE_INT8 or USE_FP16 or USE_FP32
 #define DEVICE 0  // GPU id
 #define N_PPREPROCESSING_THREAD 1
 #define NET 's'

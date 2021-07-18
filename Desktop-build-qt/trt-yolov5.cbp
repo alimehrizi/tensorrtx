@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="trt-yolov5"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\OPENCV-4.5.0\;CMake Files\..\..\..\OPENCV-4.5.0\lib\;CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\;CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\opencv4\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="deep_cores">
+				<Option output="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/libdeep_cores.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCUDA_NMS"/>
+					<Add option="-DCV_CUDA"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5"/>
+					<Add directory="/usr/local/cuda-11.0/include"/>
+					<Add directory="/usr/local/TensorRT-7.2.2.3/include"/>
+					<Add directory="/usr/local/cuda/include"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/include"/>
+					<Add directory="/home/altex/OPENCV-4.5.0/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 deep_cores"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="deep_cores/fast">
+				<Option output="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/libdeep_cores.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCUDA_NMS"/>
+					<Add option="-DCV_CUDA"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5"/>
+					<Add directory="/usr/local/cuda-11.0/include"/>
+					<Add directory="/usr/local/TensorRT-7.2.2.3/include"/>
+					<Add directory="/usr/local/cuda/include"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/include"/>
+					<Add directory="/home/altex/OPENCV-4.5.0/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 deep_cores/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trt-yolov5">
+				<Option output="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/trt-yolov5" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCUDA_NMS"/>
+					<Add option="-DCV_CUDA"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5"/>
+					<Add directory="/usr/local/cuda-11.0/include"/>
+					<Add directory="/usr/local/TensorRT-7.2.2.3/include"/>
+					<Add directory="/usr/local/cuda/include"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/include"/>
+					<Add directory="/home/altex/OPENCV-4.5.0/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 trt-yolov5"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trt-yolov5/fast">
+				<Option output="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/trt-yolov5" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCUDA_NMS"/>
+					<Add option="-DCV_CUDA"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5"/>
+					<Add directory="/usr/local/cuda-11.0/include"/>
+					<Add directory="/usr/local/TensorRT-7.2.2.3/include"/>
+					<Add directory="/usr/local/cuda/include"/>
+					<Add directory="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/include"/>
+					<Add directory="/home/altex/OPENCV-4.5.0/include/opencv4"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 trt-yolov5/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/Desktop-build-qt/CMakeFiles/deep_cores.dir/yolov5/deep_cores_generated_yololayer.cu.o">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/src/main.cpp">
+			<Option target="trt-yolov5"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/src/visualizer.cpp">
+			<Option target="trt-yolov5"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/calibrator.cpp">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/calibrator.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/common.hpp">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/cuda_utils.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/gen_wts.py">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/logging.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/utils.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/yololayer.cu">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/yololayer.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/yolov5.cpp">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/yolov5/yolov5.h">
+			<Option target="deep_cores"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/../../../OPENCV-4.5.0/lib/cmake/opencv4/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/../../../OPENCV-4.5.0/lib/cmake/opencv4/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/../../../OPENCV-4.5.0/lib/cmake/opencv4/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\opencv4\"/>
+		</Unit>
+		<Unit filename="/home/altex/Mehrizi/tensorrtx/yolov5_complete_int8/../../../OPENCV-4.5.0/lib/cmake/opencv4/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\OPENCV-4.5.0\lib\cmake\opencv4\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

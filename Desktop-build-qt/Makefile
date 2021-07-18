@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/altex/Mehrizi/tensorrtx/yolov5-org
+CMAKE_SOURCE_DIR = /home/altex/Mehrizi/tensorrtx/yolov5_complete_int8
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/altex/Mehrizi/tensorrtx/Desktop-build-qt
@@ -111,84 +111,138 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named myplugins
+# Target rules for targets named deep_cores
 
 # Build rule for target.
-myplugins: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 myplugins
-.PHONY : myplugins
+deep_cores: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 deep_cores
+.PHONY : deep_cores
 
 # fast build rule for target.
-myplugins/fast:
-	$(MAKE) -f CMakeFiles/myplugins.dir/build.make CMakeFiles/myplugins.dir/build
-.PHONY : myplugins/fast
+deep_cores/fast:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/build
+.PHONY : deep_cores/fast
 
 #=============================================================================
-# Target rules for targets named yolov5
+# Target rules for targets named trt-yolov5
 
 # Build rule for target.
-yolov5: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 yolov5
-.PHONY : yolov5
+trt-yolov5: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 trt-yolov5
+.PHONY : trt-yolov5
 
 # fast build rule for target.
-yolov5/fast:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/build
-.PHONY : yolov5/fast
+trt-yolov5/fast:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/build
+.PHONY : trt-yolov5/fast
 
-calibrator.o: calibrator.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : calibrator.o
-
-# target to build an object file
-calibrator.cpp.o:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/calibrator.cpp.o
-.PHONY : calibrator.cpp.o
-
-calibrator.i: calibrator.cpp.i
-
-.PHONY : calibrator.i
-
-# target to preprocess a source file
-calibrator.cpp.i:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/calibrator.cpp.i
-.PHONY : calibrator.cpp.i
-
-calibrator.s: calibrator.cpp.s
-
-.PHONY : calibrator.s
-
-# target to generate assembly for a file
-calibrator.cpp.s:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/calibrator.cpp.s
-.PHONY : calibrator.cpp.s
-
-yolov5.o: yolov5.cpp.o
-
-.PHONY : yolov5.o
+.PHONY : src/main.o
 
 # target to build an object file
-yolov5.cpp.o:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/yolov5.cpp.o
-.PHONY : yolov5.cpp.o
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-yolov5.i: yolov5.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : yolov5.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-yolov5.cpp.i:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/yolov5.cpp.i
-.PHONY : yolov5.cpp.i
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-yolov5.s: yolov5.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : yolov5.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-yolov5.cpp.s:
-	$(MAKE) -f CMakeFiles/yolov5.dir/build.make CMakeFiles/yolov5.dir/yolov5.cpp.s
-.PHONY : yolov5.cpp.s
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/visualizer.o: src/visualizer.cpp.o
+
+.PHONY : src/visualizer.o
+
+# target to build an object file
+src/visualizer.cpp.o:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/visualizer.cpp.o
+.PHONY : src/visualizer.cpp.o
+
+src/visualizer.i: src/visualizer.cpp.i
+
+.PHONY : src/visualizer.i
+
+# target to preprocess a source file
+src/visualizer.cpp.i:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/visualizer.cpp.i
+.PHONY : src/visualizer.cpp.i
+
+src/visualizer.s: src/visualizer.cpp.s
+
+.PHONY : src/visualizer.s
+
+# target to generate assembly for a file
+src/visualizer.cpp.s:
+	$(MAKE) -f CMakeFiles/trt-yolov5.dir/build.make CMakeFiles/trt-yolov5.dir/src/visualizer.cpp.s
+.PHONY : src/visualizer.cpp.s
+
+yolov5/calibrator.o: yolov5/calibrator.cpp.o
+
+.PHONY : yolov5/calibrator.o
+
+# target to build an object file
+yolov5/calibrator.cpp.o:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/calibrator.cpp.o
+.PHONY : yolov5/calibrator.cpp.o
+
+yolov5/calibrator.i: yolov5/calibrator.cpp.i
+
+.PHONY : yolov5/calibrator.i
+
+# target to preprocess a source file
+yolov5/calibrator.cpp.i:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/calibrator.cpp.i
+.PHONY : yolov5/calibrator.cpp.i
+
+yolov5/calibrator.s: yolov5/calibrator.cpp.s
+
+.PHONY : yolov5/calibrator.s
+
+# target to generate assembly for a file
+yolov5/calibrator.cpp.s:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/calibrator.cpp.s
+.PHONY : yolov5/calibrator.cpp.s
+
+yolov5/yolov5.o: yolov5/yolov5.cpp.o
+
+.PHONY : yolov5/yolov5.o
+
+# target to build an object file
+yolov5/yolov5.cpp.o:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/yolov5.cpp.o
+.PHONY : yolov5/yolov5.cpp.o
+
+yolov5/yolov5.i: yolov5/yolov5.cpp.i
+
+.PHONY : yolov5/yolov5.i
+
+# target to preprocess a source file
+yolov5/yolov5.cpp.i:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/yolov5.cpp.i
+.PHONY : yolov5/yolov5.cpp.i
+
+yolov5/yolov5.s: yolov5/yolov5.cpp.s
+
+.PHONY : yolov5/yolov5.s
+
+# target to generate assembly for a file
+yolov5/yolov5.cpp.s:
+	$(MAKE) -f CMakeFiles/deep_cores.dir/build.make CMakeFiles/deep_cores.dir/yolov5/yolov5.cpp.s
+.PHONY : yolov5/yolov5.cpp.s
 
 # Help Target
 help:
@@ -197,15 +251,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... deep_cores"
 	@echo "... edit_cache"
-	@echo "... myplugins"
-	@echo "... yolov5"
-	@echo "... calibrator.o"
-	@echo "... calibrator.i"
-	@echo "... calibrator.s"
-	@echo "... yolov5.o"
-	@echo "... yolov5.i"
-	@echo "... yolov5.s"
+	@echo "... trt-yolov5"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/visualizer.o"
+	@echo "... src/visualizer.i"
+	@echo "... src/visualizer.s"
+	@echo "... yolov5/calibrator.o"
+	@echo "... yolov5/calibrator.i"
+	@echo "... yolov5/calibrator.s"
+	@echo "... yolov5/yolov5.o"
+	@echo "... yolov5/yolov5.i"
+	@echo "... yolov5/yolov5.s"
 .PHONY : help
 
 
